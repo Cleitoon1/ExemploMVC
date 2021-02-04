@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ExemploMVC.Controllers
@@ -20,11 +21,13 @@ namespace ExemploMVC.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 
         public IActionResult Privacy()
         {
+            Thread.Sleep(30000);
             return View();
         }
 
