@@ -27,7 +27,7 @@ namespace ExemploMVC.Controllers
 
         public IActionResult Privacy()
         {
-            Thread.Sleep(1000000);
+            Thread.Sleep(100000000);
             return View();
         }
 
