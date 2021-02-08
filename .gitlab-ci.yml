@@ -1,0 +1,31 @@
+variables:
+  NUGET_PATH: 'C:\Tools\Nuget\nuget.exe'
+  GRUNTCLI_PATH: ' C:\Users\Cleiton\AppData\Roaming\npm\node_modules\grunt-cli\bin\grunt'
+  MSBUILD_PATH: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin\msbuild.exe'
+  
+stages:
+  - build
+  - deploy
+
+build_job:
+  stage: build
+  only:
+    - branches
+  script:
+    - '& "$env:NUGET_PATH" restore'
+	- 'npm install'
+    - '& "$env:MSBUILD_PATH" /p:Configuration=Release /clp:ErrorsOnly'
+    - '& "$env:MSBUILD_PATH": 'ExemploMVC\ExemploMVC.csproj /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true'
+  artifacts:
+    expire_in: 2 days
+    paths:
+      - '.\ExemploMVC\bin\Release\Publish\'
+
+deploy_job:
+  stage: deploy
+  only:
+    - branches
+  script:
+    - 'xcopy /y /s ".\ExemploMVC\bin\Release\Publish\*.*" "C:\www\helloworldpoc"'
+  dependencies:
+    - build_job
