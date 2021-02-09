@@ -3,7 +3,13 @@ pipeline {
 	stages {
 		stage('Source'){
 			steps {
-				checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateuserRemoteConfigs: [[url: 'https://github.com/Cleitoon1/ExemploMVC']]])
+				checkout([$class: 'GitSCM', 
+					branches: [[name: '*/master']], 
+					doGenerateSubmoduleConfigurations: false, 
+					extensions: [], 
+					submoduleCfg: [], 
+					userRemoteConfigs: [[]]
+				])
 			}
 		}
 		stage('Restore') {
