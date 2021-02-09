@@ -8,7 +8,7 @@ pipeline {
 				}
 				stage('Build') {
     					steps {
-							bat 'nuget restore ExemploMVC.sln'
+							bat 'dotnet restore ExemploMVC.sln'
 							bat 'npm install'
 							bat 'grunt default'
 							bat 'grunt minifyHtml'
