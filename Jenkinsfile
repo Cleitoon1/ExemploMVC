@@ -24,7 +24,7 @@ pipeline {
 		}
 		stage('Publish') {
 			steps {
-				bat 'dotnet publish -p:DeployOnBuild=true -p:DeployDefaultTarget=WebPublish -p:WebPublishMethod=FileSystem -p:SkipInvalidConfigurations=true -p:Configuration=Release -p:Platform=\"Any CPU\" -p:DeleteExistingFiles=True -p:publishUrl=C:\\inetpub\\wwwroot\\HelloWorldPoc'
+				bat 'dotnet publish -c Release  -o C:\\inetpub\\wwwroot\\HelloWorldPoc'
 			}
 		}
 	}
