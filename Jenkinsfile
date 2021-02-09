@@ -24,10 +24,10 @@ pipeline {
 		}
 		stage('Publish') {
 			steps {
-				powershell '''Import-Module WebAdministration Stop-WebSite \'HelloWorldPoc\''''
+				powershell '''Import-Module WebAdministration Stop-WebSite -Name \'HelloWorldPoc\''''
 				sleep 60
 				bat 'dotnet publish -c Release  -o C:\\inetpub\\wwwroot\\HelloWorldPoc'
-				powershell '''Import-Module WebAdministration Start-WebSite \'HelloWorldPoc\''''
+				powershell '''Import-Module WebAdministration Start-WebSite -Name \'HelloWorldPoc\''''
 			}
 		}
 	}
