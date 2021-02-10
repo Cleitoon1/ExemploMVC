@@ -43,5 +43,17 @@ jobs:
         shell: powershell
         run: ../../MyScripts/verifyRequests.ps1 
 
+      - name: stop website
+        shell: powershell
+        run: |
+          Import-Module WebAdministration
+					Stop-WebSite "HelloWorldPoc"
+
       - name: publish
         run: dotnet publish -c Release  -o C:\\www\\helloworldpoc
+        
+      - name: stop website
+        shell: powershell
+        run: |
+          Import-Module WebAdministration
+					Start-WebSite "HelloWorldPoc"
