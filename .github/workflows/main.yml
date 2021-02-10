@@ -45,12 +45,11 @@ jobs:
 
       - name: stop website
         shell: cmd
-        run: %windir%\system32\inetsrv\appcmd stop site /site.name:helloworldpoc
+        run: '%windir%\system32\inetsrv\appcmd stop site /site.name:helloworldpoc'
 
       - name: publish
         run: dotnet publish -c Release  -o C:\\www\\helloworldpoc
         
       - name: start website
-        shell: powershell
         shell: cmd
-        run: %windir%\system32\inetsrv\appcmd start site /site.name:helloworldpoc
+        run: '%windir%\system32\inetsrv\appcmd start site /site.name:helloworldpoc'
