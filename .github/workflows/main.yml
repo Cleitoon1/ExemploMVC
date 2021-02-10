@@ -40,9 +40,8 @@ jobs:
         run: dotnet build --configuration Release
         
       - name: verify requests
-        uses: Amadevus/pwsh-script@v2.0.1
-        with:
-          script: ../../MyScripts/verifyRequests.ps1 
+        shell: powershell
+        run: ../../MyScripts/verifyRequests.ps1 
 
       - name: publish
-        run: dotnet publish -c Release  -o C:\\www\\helloworldpo
+        run: dotnet publish -c Release  -o C:\\www\\helloworldpoc
