@@ -9,7 +9,6 @@ $QtdIterations = 5
 
 $Timeout = (Get-Date).Add($TimeoutAfter)
 
-Get-Item IIS:\AppPools\$WebSite | Get-WebRequest
 $InitialRequestQuantity = (Get-WebRequest -AppPool $WebSite).count
 
 Write-Output "Numero Inicial de Requisicoes $($InitialRequestQuantity) site $($WebSite)"
@@ -54,7 +53,7 @@ if($InitialRequestQuantity -gt 0)
 			}			
 		}		
 	}
-	while (($Result -gt $MinRequestPercentToAdvance) -or ((Get-Date) -lt $Timeout))
+	while ($Result -gt $MinRequestPercentToAdvance -or ((Get-Date) -lt $Timeout) -or $QtdRequests -gt 0)
 	Write-Output "Saiu do loop principal"
 	Write-Output $Result
 }
