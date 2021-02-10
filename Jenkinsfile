@@ -28,7 +28,7 @@ pipeline {
 			steps {
 			powershell '''Import-Module WebAdministration
 
-				$Website = "helloworldpoc"
+				$Website = "HelloWorldPoc"
 				$TimeoutAfter = New-TimeSpan -Minutes 5
 				$MinRequestPercentToAdvance = 50
 				$WaitBetweenPolling = New-TimeSpan -Seconds 10
@@ -96,6 +96,7 @@ pipeline {
 				powershell '''Import-Module WebAdministration
 						Stop-WebSite "HelloWorldPoc"
 				'''
+				sleep 30
 				bat 'dotnet publish -c Release  -o C:\\inetpub\\wwwroot\\HelloWorldPoc'
 				powershell '''Import-Module WebAdministration
 						Start-WebSite "HelloWorldPoc"
