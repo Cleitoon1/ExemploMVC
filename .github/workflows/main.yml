@@ -44,16 +44,13 @@ jobs:
         run: ../../MyScripts/verifyRequests.ps1 
 
       - name: stop website
-        shell: powershell
-        run: |
-          Import-Module WebAdministration
-					Stop-WebSite "HelloWorldPoc"
+        shell: cmd
+        run: %windir%\system32\inetsrv\appcmd stop site /site.name:helloworldpoc
 
       - name: publish
         run: dotnet publish -c Release  -o C:\\www\\helloworldpoc
         
-      - name: stop website
+      - name: start website
         shell: powershell
-        run: |
-          Import-Module WebAdministration
-					Start-WebSite "HelloWorldPoc"
+        shell: cmd
+        run: %windir%\system32\inetsrv\appcmd start site /site.name:helloworldpoc
