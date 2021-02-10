@@ -40,4 +40,4 @@ jobs:
         run: dotnet build --configuration Release
         
       - name: publish
-        run: dotnet publish -c Release  -o C:\\inetpub\\wwwroot\\HelloWorldPoc
+        run: dotnet publish -c Release  -o C:\\www\\helloworldpoc
