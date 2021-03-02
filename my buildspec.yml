@@ -2,9 +2,8 @@ version: 0.2
 phases:
   build:
     commands:
-      - dotnet restore ExemploMVC.sln
       - dotnet test ./ExemploMVC/ExemploMVC.csproj
       - dotnet publish -c release -o ./build_output ./ExemploMVC/ExemploMVC.csproj
 artifacts:
   files:
-    - src/HelloWorldWebCore/build_output/*
+    - ExemploMVC/build_output/*
