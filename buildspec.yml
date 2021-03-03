@@ -9,5 +9,5 @@ phases:
 
 artifacts:
   files:
-    - ./ExemploMVC/build_output/*
-    - buildspec.yml
+    - ./ExemploMVC/build_output/**/*
+    - ./buildspec.yml
