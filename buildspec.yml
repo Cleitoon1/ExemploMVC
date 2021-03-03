@@ -9,4 +9,4 @@ phases:
 
 artifacts:
   files:
-    - ./ExemploMVC/build_output/**/*
+    - ./ExemploMVC/build_output/*
