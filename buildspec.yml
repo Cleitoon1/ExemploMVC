@@ -1,0 +1,12 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      dotnet restore ./ExemploMVC/ExemploMVC.csproj
+  build:
+    commands:
+      dotnet publish -c release ./ExemploMVC/ExemploMVC.csproj -o ./ExemploMVC/build_output
+
+artifacts:
+  files:
+    - ./ExemploMVC/build_output/**/*

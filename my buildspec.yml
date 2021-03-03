@@ -1,9 +1,0 @@
-version: 0.2
-phases:
-  build:
-    commands:
-      - dotnet test ./ExemploMVC/ExemploMVC.csproj
-      - dotnet publish -c release -o ./build_output ./ExemploMVC/ExemploMVC.csproj
-artifacts:
-  files:
-    - ExemploMVC/build_output/*
