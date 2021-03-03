@@ -5,7 +5,7 @@ phases:
       dotnet restore ./ExemploMVC/ExemploMVC.csproj
   build:
     commands:
-      dotnet publish -c release ./ExemploMVC/ExemploMVC.csproj -o ./ExemploMVC/build_output
+      dotnet publish -c release -o ./ExemploMVC/build_output ./ExemploMVC/ExemploMVC.csproj
 
 artifacts:
   files:
