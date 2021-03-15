@@ -10,7 +10,7 @@ pipeline {
 		}
 		stage('Restore') {
 			steps {
-				bat 'cd ExemploMVC && dotnet restore ExemploMVC.sln'
+				bat 'cd ExemploMVC && dotnet restore'
 				bat 'npm install'
 			}
 		}
