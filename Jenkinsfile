@@ -10,18 +10,18 @@ pipeline {
 		}
 		stage('Restore') {
 			steps {
-				bat 'dotnet restore ExemploMVC.sln'
+				bat 'cd ExemploMVC && dotnet restore ExemploMVC.sln'
 				bat 'npm install'
 			}
 		}
 		stage('Clean') {
 			steps {
-				bat 'dotnet clean'
+				bat 'cd ExemploMVC && dotnet clean'
 			}
 		}
 		stage('Build') {
 			steps {
-				bat 'dotnet build --configuration Release'
+				bat 'cd ExemploMVC && dotnet build --configuration Release'
 			}
 		}
 		stage('VerifyRequests') {
@@ -97,7 +97,7 @@ pipeline {
 						Stop-WebSite "HelloWorldPoc"
 				'''
 				sleep 30
-				bat 'dotnet publish -c Release  -o C:\\inetpub\\wwwroot\\HelloWorldPoc'
+				bat 'cd ExemploMVC && dotnet publish -c Release  -o C:\\inetpub\\wwwroot\\HelloWorldPoc'
 				powershell '''Import-Module WebAdministration
 						Start-WebSite "HelloWorldPoc"
 				'''
