@@ -1,0 +1,46 @@
+pipeline {
+	agent any
+	stages {
+		stage('Source'){
+			steps {
+				checkout([$class: 'GitSCM', 
+					branches: [[name: '*/master']]
+				])
+			}
+		}
+		stage('Restore') {
+			steps {
+				bat 'cd ExemploMVC && dotnet restore'
+				bat 'npm install'
+			}
+		}
+		stage('Clean') {
+			steps {
+				bat 'cd ExemploMVC && dotnet clean'
+			}
+		}
+		stage('Build') {
+			steps {
+				bat 'cd ExemploMVC && dotnet build --configuration Release'
+			}
+		}
+		stage('VerifyRequests') {
+			steps {
+				powershell './MyScripts/verifyRequests helloworldpoc' 
+			}
+		}
+		stage('Publish') {
+			steps {
+				powershell '''Import-Module WebAdministration
+						Stop-WebSite "HelloWorldPoc"
+				'''
+				sleep 30
+				bat 'cd ExemploMVC && dotnet publish -c Release  -o C:\\inetpub\\wwwroot\\HelloWorldPoc'
+				powershell '''Import-Module WebAdministration
+						Start-WebSite "HelloWorldPoc"
+				'''
+			}
+		}
+	}
+}
+

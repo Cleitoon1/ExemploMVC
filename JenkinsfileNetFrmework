@@ -1,0 +1,45 @@
+pipeline {
+	agent any
+	stages {
+		stage('Source'){
+			steps {
+				checkout([$class: 'GitSCM', 
+					branches: [[name: '*/master']]
+				])
+			}
+		}
+		stage('Restore') {
+			steps {
+				bat 'nuget restore ExemploMVC.sln'
+			}
+		}
+		stage('Clean') {
+			steps {
+				bat 'cd MVCExemploFullFramework && msbuild -t:Clean'
+			}
+		}
+		stage('Build') {
+			steps {
+				bat 'cd MVCExemploFullFramework && msbuild'
+			}
+		}
+		stage('VerifyRequests') {
+			steps {
+				powershell './MyScripts/verifyRequests HelloWorldPocNetFramework' 
+			}
+		}
+		stage('Publish') {
+			steps {
+				powershell '''Import-Module WebAdministration
+						Stop-WebSite "HelloWorldPocNetFramework"
+				'''
+				sleep 30
+				bat 'cd MVCExemploFullFramework && msbuild MVCExemploFullFramework.csproj /p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:publishUrl="C:\inetpub\wwwroot\HelloWorldPocNetFramework"'
+				powershell '''Import-Module WebAdministration
+						Start-WebSite "HelloWorldPocNetFramework"
+				'''
+			}
+		}
+	}
+}
+
