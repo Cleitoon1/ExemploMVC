@@ -39,7 +39,7 @@ pipeline {
 				'''
 				sleep 30
 				dir('MVCExemploFullFramework') {
-					bat 'msbuild MVCExemploFullFramework.csproj /p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:publishUrl="C:\inetpub\wwwroot\HelloWorldPocNetFramework"'
+					bat 'msbuild MVCExemploFullFramework.csproj /p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:publishUrl="C:\\inetpub\\wwwroot\\HelloWorldPocNetFramework"'
 				}
 				powershell '''Import-Module WebAdministration
 						Start-WebSite "HelloWorldPocNetFramework"
