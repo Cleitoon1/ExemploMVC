@@ -15,14 +15,16 @@ pipeline {
 		}
 		stage('Clean') {
 			steps {
-				bat 'cd MVCExemploFullFramework'
-				bat 'msbuild -t:Clean'
+				dir('MVCExemploFullFramework') {
+					bat 'msbuild -t:Clean'
+				}				
 			}
 		}
 		stage('Build') {
 			steps {
-				bat 'cd MVCExemploFullFramework'
-				bat 'msbuild'
+				dir('MVCExemploFullFramework') {
+					bat 'msbuild'
+				}
 			}
 		}
 		stage('VerifyRequests') {
@@ -36,8 +38,9 @@ pipeline {
 						Stop-WebSite "HelloWorldPocNetFramework"
 				'''
 				sleep 30
-				bat 'cd MVCExemploFullFramework'
-				bat 'msbuild MVCExemploFullFramework.csproj /p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:publishUrl="C:\inetpub\wwwroot\HelloWorldPocNetFramework"'
+				dir('MVCExemploFullFramework') {
+					bat 'msbuild MVCExemploFullFramework.csproj /p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:publishUrl="C:\inetpub\wwwroot\HelloWorldPocNetFramework"'
+				}
 				powershell '''Import-Module WebAdministration
 						Start-WebSite "HelloWorldPocNetFramework"
 				'''
