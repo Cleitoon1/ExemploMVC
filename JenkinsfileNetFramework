@@ -1,5 +1,8 @@
 pipeline {
 	agent any
+	environment {
+		PROJECT_PATH = "${env.WORKSPACE}/MVCExemploFullFramework"
+	}
 	stages {
 		stage('Source'){
 			steps {
@@ -15,14 +18,14 @@ pipeline {
 		}
 		stage('Clean') {
 			steps {
-				dir('MVCExemploFullFramework') {
+				dir(PROJECT_PATH) {
 					bat 'msbuild -t:Clean'
 				}				
 			}
 		}
 		stage('Build') {
 			steps {
-				dir('MVCExemploFullFramework') {
+				dir(PROJECT_PATH) {
 					bat 'msbuild'
 				}
 			}
@@ -38,7 +41,7 @@ pipeline {
 						Stop-WebSite "HelloWorldPocNetFramework"
 				'''
 				sleep 30
-				dir('MVCExemploFullFramework') {
+				dir(PROJECT_PATH) {
 					bat 'msbuild MVCExemploFullFramework.csproj /p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:publishUrl="C:\\inetpub\\wwwroot\\HelloWorldPocNetFramework"'
 				}
 				powershell '''Import-Module WebAdministration
