@@ -1,0 +1,10 @@
+version: 0.0
+os: windows
+files:
+  - source: .\ExemploMVC
+    destination: C:\inetpub\wwwroot\HelloWorldPoc
+hooks:
+  ApplicationStop:
+    - location: .\applicationStop.ps1
+  ApplicationStart:
+    - location: .\applicationStart.ps1

@@ -1,0 +1,10 @@
+version: 0.0
+os: windows
+files:
+  - source: .\MVCExemploFullFramework
+    destination: C:\inetpub\wwwroot\HelloWorldPocFramework
+hooks:
+  ApplicationStop:
+    - location: .\applicationStop.ps1
+  ApplicationStart:
+    - location: .\applicationStart.ps1

@@ -6,6 +6,7 @@ pipeline {
 	stages {
 		stage('Source'){
 			steps {
+				echo PROJECT_PATH
 				checkout([$class: 'GitSCM', 
 					branches: [[name: '*/master']]
 				])
