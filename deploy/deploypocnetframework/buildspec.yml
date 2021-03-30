@@ -1,7 +1,7 @@
 version: 0.0
 os: windows
 files:
-  - source: .\MVCExemploFullFramework
+  - source: \
     destination: C:\inetpub\wwwroot\HelloWorldPocFramework
 hooks:
   ApplicationStop:
