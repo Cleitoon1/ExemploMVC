@@ -1,0 +1,2 @@
+."./verifyRequests" HelloWorldPoc
+."./StopSite" HelloWorldPoc

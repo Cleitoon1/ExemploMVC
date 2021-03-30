@@ -1,0 +1,2 @@
+."./verifyRequests" HelloWorldPocNetFramework
+."./StopSite" HelloWorldPocNetFramework
