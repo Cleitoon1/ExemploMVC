@@ -1,13 +1,10 @@
-version: 0.2
-phases:
-  pre_build:
-    commands:
-      dotnet restore ./ExemploMVC/ExemploMVC.csproj
-  build:
-    commands:
-      dotnet publish -c release -o ./ExemploMVC/build_output ./ExemploMVC/ExemploMVC.csproj
-
-artifacts:
-  files:
-    - ./ExemploMVC/build_output/*
-    - ./buildspec.yml
+version: 0.0
+os: windows
+files:
+  - source: \
+    destination: C:\inetpub\wwwroot\HelloWorldPoc
+hooks:
+  ApplicationStop:
+    - location: .\applicationStop.ps1
+  ApplicationStart:
+    - location: .\applicationStart.ps1
