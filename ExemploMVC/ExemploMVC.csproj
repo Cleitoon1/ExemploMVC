@@ -7,5 +7,17 @@
   <ItemGroup>
     <Folder Include="wwwroot\CompressedFiles\" />
   </ItemGroup>
+  
+  <Target
+      Name="GetCopyToPublishDirectoryItems" 
+      DependsOnTargets="GetCopyToOutputDirectoryItems"
+      Returns="@(AllPublishItemsFullPathWithTargetPath)">
+      
+    <ItemGroup>
+      <AllPublishItemsFullPathWithTargetPath Include="@(AllItemsFullPathWithTargetPath)">
+        <CopyToPublishDirectory>%(CopyToOutputDirectory)</CopyToPublishDirectory>
+      </AllPublishItemsFullPathWithTargetPath>
+    </ItemGroup>
+  </Target>
 
 </Project>
