@@ -3,6 +3,7 @@ os: windows
 files:
   - source: \
     destination: C:\inetpub\wwwroot\HelloWorldPoc
+    
 hooks:
   ApplicationStop:
     - location: .\applicationStop.ps1
